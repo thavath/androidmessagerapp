@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "917816610655",
+    "firebase_url": "https://messager-afe66.firebaseio.com",
+    "project_id": "messager-afe66",
+    "storage_bucket": "messager-afe66.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:917816610655:android:c52d13b03890ae6b",
+        "android_client_info": {
+          "package_name": "com.example.user.messagerapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "917816610655-57g67kgvokjp5k0jio1i3m3vjv19261e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.user.messagerapp",
+            "certificate_hash": "bd17fbf1b4d9b1592172531d70ac11ad6dbe9f06"
+          }
+        },
+        {
+          "client_id": "917816610655-obr62i8co3aevab58tol5mie3drge2cd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCEVZRQWpqYtdk8wEY85p-p8aRafVbriE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "917816610655-obr62i8co3aevab58tol5mie3drge2cd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "917816610655-0slpm2vnto1tn61ppngf8d5565iv1la2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.user.messagerapp"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

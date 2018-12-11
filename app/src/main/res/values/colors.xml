@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorBlack">#222020</color>
+    <color name="colorFacebook">#4a59df</color>
+    <color name="colorGoogle">#ff5b79</color>
+    <color name="colorTwitter">#16add7</color>
+    <color name="colorSignin">#e1dede</color>
+    <color name="colorLogin">#6f72e4</color>
+    <color name="colorSignup">#378bd4</color>
+</resources>

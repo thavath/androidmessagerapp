@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorSignin"
+        android:paddingTop="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
+
+    <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+        <ImageView
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:padding="5dp"
+                android:contentDescription="@string/app_image"
+                app:srcCompat="@drawable/common_google_signin_btn_icon_dark"
+                android:id="@+id/user_image_view"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circle_image_view"
+                android:layout_width="90dp"
+                android:padding="5dp"
+                app:civ_border_color="@color/colorFacebook"
+                android:layout_height="90dp"/>
+        <TextView
+                android:id="@+id/user_name_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/user_image_view"
+                android:text="@string/app_user"
+                android:layout_toEndOf="@+id/user_image_view"/>
+        <TextView
+                android:id="@+id/user_email_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_email"
+                android:padding="5dp"
+                android:layout_toRightOf="@+id/user_image_view"
+                android:layout_below="@+id/user_name_view"
+                android:layout_toEndOf="@+id/user_image_view"/>
+    </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</android.support.constraint.ConstraintLayout>

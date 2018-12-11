@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">MessagerApp</string>
+    <string name="email_hint">Email address</string>
+    <string name="username_hint">User name</string>
+    <string name="password_hint">Your password</string>
+    <string name="image_welcome">Image Splash</string>
+    <string name="txt_sign_up">Not yet register? please sign up</string>
+    <string name="btn_register">Register</string>
+    <string name="back_login">Already register please log in.</string>
+    <string name="login">Login</string>
+    <string name="menu_message">New Massage</string>
+    <string name="menu_sign_up">Sign Out</string>
+    <string name="app_image">todo</string>
+    <string name="app_user">User Name</string>
+    <string name="app_email">Email@gmail.com</string>
+    <string name="title_activity_chat">ChatActivity</string>
+</resources>
