@@ -3,10 +3,8 @@ package com.example.user.messagerapp
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -24,6 +22,8 @@ class LoginActivity : AppCompatActivity() {
         var txtEmail = findViewById<EditText>(R.id.txt_email)
         var txtPassword = findViewById<EditText>(R.id.txt_password)
         var txtSignUp = findViewById<TextView>(R.id.txt_sign_up)
+        var progressBar = findViewById<ProgressBar>(R.id.signin_progressbar)
+        progressBar.visibility = View.INVISIBLE
 
         mAuth = FirebaseAuth.getInstance()
 
@@ -31,11 +31,13 @@ class LoginActivity : AppCompatActivity() {
 
             var email = txtEmail.text.toString().trim()
             var password = txtPassword.text.toString().trim()
+            progressBar.visibility = View.VISIBLE
             mAuth!!.signInWithEmailAndPassword(email!!, password!!)
                 .addOnCompleteListener(this){ task: Task<AuthResult> ->
                     if (task.isSuccessful){
+                        progressBar.visibility = View.INVISIBLE
                         Toast.makeText(this, "Logged in successfully.",Toast.LENGTH_SHORT).show()
-                        var intent = Intent(this, HomeActivity::class.java)
+                        var intent = Intent(this, WelcomeActivity::class.java)
 //                        intent.putExtra("email", email)
 //                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(intent)

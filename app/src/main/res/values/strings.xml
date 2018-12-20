@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MessagerApp</string>
+    <string name="app_name">Room Rental</string>
     <string name="email_hint">Email address</string>
     <string name="username_hint">User name</string>
     <string name="password_hint">Your password</string>
@@ -14,4 +14,11 @@
     <string name="app_user">User Name</string>
     <string name="app_email">Email@gmail.com</string>
     <string name="title_activity_chat">ChatActivity</string>
+    <string name="title_activity_welcome">Room Rental</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">User Name</string>
+    <string name="nav_header_subtitle">username@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
 </resources>

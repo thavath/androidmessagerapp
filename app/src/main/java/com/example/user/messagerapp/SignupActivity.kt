@@ -9,12 +9,14 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import android.widget.*
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.android.synthetic.main.activity_new_message.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import java.io.Serializable
 import java.util.*
@@ -31,7 +33,9 @@ class SignupActivity : AppCompatActivity() {
         var txtPassword = findViewById<EditText>(R.id.txt_r_password)
         var btnRegister = findViewById<Button>(R.id.btn_register)
         var imageSelector = findViewById<ImageView>(R.id.r_profile_image)
+        var progressBar = findViewById<ProgressBar>(R.id.signup_progressbar)
 
+        progressBar.visibility = View.INVISIBLE
         var mAuth = FirebaseAuth.getInstance()
 
 
@@ -39,6 +43,7 @@ class SignupActivity : AppCompatActivity() {
         btnRegister.setOnClickListener {
             var email = txtEmail.text.toString().trim()
             var password = txtPassword.text.toString().trim()
+            progressBar.visibility = View.VISIBLE
             mAuth!!.createUserWithEmailAndPassword(email!!,password!!)
                 .addOnCompleteListener(this) { task :Task<AuthResult> ->
                     if (task.isSuccessful){
@@ -92,6 +97,7 @@ class SignupActivity : AppCompatActivity() {
         ref.setValue(user)
             .addOnSuccessListener {
                 // start home activity
+                progressBar.visibility = View.INVISIBLE
                 var intent = Intent(this, HomeActivity::class.java)
                 intent.putExtra("user", user)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
