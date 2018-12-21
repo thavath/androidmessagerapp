@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Room Rental</string>
-    <string name="email_hint">Email address</string>
+    <string name="email_hint">  Email address</string>
+    <string name="username_phone_hint">Phone Number</string>
     <string name="username_hint">User name</string>
     <string name="password_hint">Your password</string>
     <string name="image_welcome">Image Splash</string>

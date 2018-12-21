@@ -16,6 +16,7 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_new_message.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import java.io.Serializable
@@ -23,10 +24,35 @@ import java.util.*
 
 class SignupActivity : AppCompatActivity() {
 
+    private var accountsType: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
         supportActionBar?.title = "     Register to Room Rental App"
+
+
+        //        spinner set up
+        var user_type = arrayOf("User Type" ,"Room Owner", "Room Tenant")
+        var spinner_users : Spinner? = this.spinner_user_type_register
+//        spinner_user!!.setOnItemClickListener { parent, view, position, id ->
+//            Toast.makeText(this,  "Selected : "+ user_type[position], Toast.LENGTH_SHORT).show()
+//        }
+        spinner_users!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                Toast.makeText(this@SignupActivity,  "Are you sure? You are : "+ user_type[position], Toast.LENGTH_SHORT).show()
+                accountsType = user_type[position]
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                accountsType = null
+            }
+        }
+        // Create an ArrayAdapter using a simple spinner layout and languages array
+        val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, user_type)
+        // Set layout to use when the list of choices appear
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        // Set Adapter to Spinner
+        spinner_users.adapter = aa
 
         var txtBackLogin = findViewById<TextView>(R.id.txt_login)
         var txtUserName = findViewById<EditText>(R.id.txt_r_username)
@@ -46,7 +72,7 @@ class SignupActivity : AppCompatActivity() {
             var password = txtPassword.text.toString().trim()
             progressBar.visibility = View.VISIBLE
            if(!email.isEmpty() && !password.isEmpty() && !txtUserName.text.toString().isEmpty()){
-               mAuth!!.createUserWithEmailAndPassword(email!!,password!!)
+               mAuth!!.createUserWithEmailAndPassword(email,password)
                    .addOnCompleteListener(this) { task :Task<AuthResult> ->
                        if (task.isSuccessful){
                            // uploading image function

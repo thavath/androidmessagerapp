@@ -9,17 +9,47 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import kotlinx.android.synthetic.main.activity_login.*
+import android.widget.AdapterView
+
+
 
 class LoginActivity : AppCompatActivity() {
 
     private var mAuth: FirebaseAuth? = null
     private var currentUser: FirebaseUser? = null
+    private var accountType: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         supportActionBar?.title = "     Login to Room Rental App"
+
+//        spinner set up
+        var user_type = arrayOf("Please Select Account Type" ,"Room Owner", "Room Tenant")
+        var spinner_user: Spinner? = null
+
+        spinner_user  = this.spinner_user_type
+//        spinner_user!!.setOnItemClickListener { parent, view, position, id ->
+//            Toast.makeText(this,  "Selected : "+ user_type[position], Toast.LENGTH_SHORT).show()
+//        }
+        spinner_user!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                Toast.makeText(this@LoginActivity,  "Are you sure? You are : "+ user_type[position], Toast.LENGTH_SHORT).show()
+                accountType = user_type[position]
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                accountType = null
+            }
+        }
+        // Create an ArrayAdapter using a simple spinner layout and languages array
+        val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, user_type)
+        // Set layout to use when the list of choices appear
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        // Set Adapter to Spinner
+        spinner_user!!.adapter = aa
 
         var btnLogin = findViewById<Button>(R.id.btn_login)
         var txtEmail = findViewById<EditText>(R.id.txt_email)
@@ -41,11 +71,25 @@ class LoginActivity : AppCompatActivity() {
                         if (task.isSuccessful){
                             progressBar.visibility = View.INVISIBLE
                             Toast.makeText(this, "Logged in successfully.",Toast.LENGTH_SHORT).show()
-                            var intent = Intent(this, WelcomeActivity::class.java)
+                           if(accountType.equals(user_type[1])){
+                               var intent = Intent(this, WelcomeActivity::class.java)
 //                        intent.putExtra("email", email)
 //                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-                            startActivity(intent)
-                            finish()
+                               startActivity(intent)
+                               finish()
+                           }else if (accountType.equals(user_type[2])){
+                               var intent = Intent(this, HomeActivity::class.java)
+//                        intent.putExtra("email", email)
+//                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                               startActivity(intent)
+                               finish()
+                           }else {
+                               var intent = Intent(this, WelcomeActivity::class.java)
+    //                        intent.putExtra("email", email)
+    //                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                               startActivity(intent)
+                               finish()
+                           }
                         }else{
                             Toast.makeText(this, "Invalid Email or Password.",Toast.LENGTH_SHORT).show()
                             progressBar.visibility = View.INVISIBLE
