@@ -26,9 +26,10 @@ class SignupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
+        supportActionBar?.title = "     Register to Room Rental App"
 
         var txtBackLogin = findViewById<TextView>(R.id.txt_login)
-//        var txtUserName = findViewById<EditText>(R.id.txt_r_username)
+        var txtUserName = findViewById<EditText>(R.id.txt_r_username)
         var txtEmail = findViewById<EditText>(R.id.txt_r_email)
         var txtPassword = findViewById<EditText>(R.id.txt_r_password)
         var btnRegister = findViewById<Button>(R.id.btn_register)
@@ -44,16 +45,22 @@ class SignupActivity : AppCompatActivity() {
             var email = txtEmail.text.toString().trim()
             var password = txtPassword.text.toString().trim()
             progressBar.visibility = View.VISIBLE
-            mAuth!!.createUserWithEmailAndPassword(email!!,password!!)
-                .addOnCompleteListener(this) { task :Task<AuthResult> ->
-                    if (task.isSuccessful){
-                         // uploading image function
-                        uploadImageToFirebaseStorage()
-                        // start new activity when user registered
-                    }else{
-                        Toast.makeText(this, "Authentication Failed", Toast.LENGTH_SHORT).show()
-                    }
-                }
+           if(!email.isEmpty() && !password.isEmpty() && !txtUserName.text.toString().isEmpty()){
+               mAuth!!.createUserWithEmailAndPassword(email!!,password!!)
+                   .addOnCompleteListener(this) { task :Task<AuthResult> ->
+                       if (task.isSuccessful){
+                           // uploading image function
+                           uploadImageToFirebaseStorage()
+                           // start new activity when user registered
+                       }else{
+                           Toast.makeText(this, "Authentication Failed", Toast.LENGTH_SHORT).show()
+                           progressBar.visibility = View.INVISIBLE
+                       }
+                   }
+           }else {
+               Toast.makeText(this, "Please Enter invalid data.", Toast.LENGTH_SHORT).show()
+               progressBar.visibility = View.INVISIBLE
+           }
         }
 
         txtBackLogin.setOnClickListener {
@@ -108,6 +115,7 @@ class SignupActivity : AppCompatActivity() {
             .addOnFailureListener {
 
                 Toast.makeText(this, "Can not create user. Something went wrong" , Toast.LENGTH_SHORT).show()
+                progressBar.visibility = View.INVISIBLE
             }
 
     }

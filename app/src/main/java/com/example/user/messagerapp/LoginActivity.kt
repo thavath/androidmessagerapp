@@ -18,6 +18,9 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        supportActionBar?.title = "     Login to Room Rental App"
+
         var btnLogin = findViewById<Button>(R.id.btn_login)
         var txtEmail = findViewById<EditText>(R.id.txt_email)
         var txtPassword = findViewById<EditText>(R.id.txt_password)
@@ -32,24 +35,31 @@ class LoginActivity : AppCompatActivity() {
             var email = txtEmail.text.toString().trim()
             var password = txtPassword.text.toString().trim()
             progressBar.visibility = View.VISIBLE
-            mAuth!!.signInWithEmailAndPassword(email!!, password!!)
-                .addOnCompleteListener(this){ task: Task<AuthResult> ->
-                    if (task.isSuccessful){
-                        progressBar.visibility = View.INVISIBLE
-                        Toast.makeText(this, "Logged in successfully.",Toast.LENGTH_SHORT).show()
-                        var intent = Intent(this, WelcomeActivity::class.java)
+            if(!email.isEmpty() && !password.isEmpty()){
+                mAuth!!.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this){ task: Task<AuthResult> ->
+                        if (task.isSuccessful){
+                            progressBar.visibility = View.INVISIBLE
+                            Toast.makeText(this, "Logged in successfully.",Toast.LENGTH_SHORT).show()
+                            var intent = Intent(this, WelcomeActivity::class.java)
 //                        intent.putExtra("email", email)
 //                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        startActivity(intent)
-                        finish()
-                    }else{
-                        Toast.makeText(this, "Invalid Email and Password.",Toast.LENGTH_SHORT).show()
+                            startActivity(intent)
+                            finish()
+                        }else{
+                            Toast.makeText(this, "Invalid Email or Password.",Toast.LENGTH_SHORT).show()
+                            progressBar.visibility = View.INVISIBLE
+                        }
                     }
-                }
+            }else {
+                Toast.makeText(this, "Please input information.", Toast.LENGTH_LONG).show()
+                progressBar.visibility = View.INVISIBLE
+            }
         }
         txtSignUp.setOnClickListener {
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 

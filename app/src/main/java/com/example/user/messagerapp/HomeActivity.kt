@@ -36,12 +36,14 @@ class HomeActivity : AppCompatActivity() {
             R.id.menu_new_message -> {
                 val intent = Intent(this, NewMessageActivity::class.java)
                 startActivity(intent)
+                finish()
             }
             R.id.menu_sign_up -> {
                 val intent = Intent(this, LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
                 FirebaseAuth.getInstance().signOut()
+                finish()
             }
         }
         return super.onOptionsItemSelected(item)
