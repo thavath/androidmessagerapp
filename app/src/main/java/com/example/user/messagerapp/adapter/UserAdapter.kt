@@ -45,6 +45,7 @@ class UserAdapter (private val list: ArrayList<User>,
 
             itemView.setOnClickListener {
                 var intent = Intent(context, ChatLogActivity::class.java)
+                intent.putExtra("user", user)
                 context.startActivity(intent)
             }
         }

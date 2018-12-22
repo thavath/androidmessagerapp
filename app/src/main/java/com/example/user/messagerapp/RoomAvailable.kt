@@ -15,7 +15,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.activity_room_homepage.*
+import kotlinx.android.synthetic.main.activity_room_avaiable.*
 
 class NewMessageActivity : AppCompatActivity() {
 
@@ -25,7 +25,7 @@ class NewMessageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_room_homepage)
+        setContentView(R.layout.activity_room_avaiable)
 //        var recyclerView = findViewById<>(R.id.preview_new_message)
         var progressBar = findViewById<ProgressBar>(R.id.progressBar)
         supportActionBar?.title = "Available Room"

@@ -17,7 +17,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.activity_room_homepage.*
+import kotlinx.android.synthetic.main.activity_room_avaiable.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         var progressBar = findViewById<ProgressBar>(R.id.progressBar)
-        supportActionBar?.title = "         Available Room"
+        supportActionBar?.title = "Available Room"
         progressBar.visibility = View.VISIBLE
         userList = ArrayList<User>()
 

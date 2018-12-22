@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_room_homepage.*
+import kotlinx.android.synthetic.main.activity_room_avaiable.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import java.io.Serializable
 import java.util.*
@@ -28,7 +28,6 @@ class SignupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
-        supportActionBar?.title = "     Register to Room Rental App"
 
 
         //        spinner set up
@@ -39,7 +38,6 @@ class SignupActivity : AppCompatActivity() {
 //        }
         spinner_users!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                Toast.makeText(this@SignupActivity,  "Are you sure? You are : "+ user_type[position], Toast.LENGTH_SHORT).show()
                 accountsType = user_type[position]
             }
 

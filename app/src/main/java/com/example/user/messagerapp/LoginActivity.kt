@@ -24,7 +24,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_login)
-        supportActionBar?.title = "     Login to Room Rental App"
 
 //        spinner set up
         var user_type = arrayOf("Account Type" ,"Room Owner", "Room Tenant")
@@ -34,7 +33,6 @@ class LoginActivity : AppCompatActivity() {
 //        }
         spinner_user!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                Toast.makeText(this@LoginActivity,  "Are you sure? You are : "+ user_type[position], Toast.LENGTH_SHORT).show()
                 accountType = user_type[position]
             }
 
@@ -61,6 +59,7 @@ class LoginActivity : AppCompatActivity() {
         btnSkip.setOnClickListener {
             var intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         btnLogin.setOnClickListener {

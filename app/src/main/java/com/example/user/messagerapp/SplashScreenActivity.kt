@@ -15,7 +15,7 @@ class SplashScreenActivity : AppCompatActivity() {
                 super.run()
                 try {
                     Thread.sleep((1000).toLong())
-                    var i = Intent(baseContext, WelcomeActivity::class.java)
+                    var i = Intent(baseContext, MainActivity::class.java)
                     startActivity(i)
                     finish()
                 }catch (e: Exception){

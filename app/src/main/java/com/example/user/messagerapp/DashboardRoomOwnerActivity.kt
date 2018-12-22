@@ -36,7 +36,6 @@ class WelcomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         var hView = nav_view.getHeaderView(0)
         var profileAvatar = hView.findViewById<ImageView>(R.id.profile_image)
         var userName = hView.findViewById<TextView>(R.id.user_full_name)
-        var userEmail = hView.findViewById<TextView>(R.id.user_email)
 
           val uid = FirebaseAuth.getInstance().uid
           if(uid != null){
@@ -52,7 +51,6 @@ class WelcomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
                            if (user.uid == uid){
                                Picasso.get().load(user.imageUri).into(profileAvatar)
                                userName.text = user.username.capitalize()
-                               userEmail.text = user.email.capitalize()
                                supportActionBar?.title = user.username.capitalize()+"'s Dashboard"
                                userPosition = user.position
                                if (userPosition.equals(("Room Tenant").toString().trim())){
@@ -133,19 +131,28 @@ class WelcomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
                 startActivity(intent)
             }
             R.id.nav_room_available -> {
-
+                var intent = Intent(this, BookedRoomActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.nav_add_building -> {
+                var intent = Intent(this, AddNewBuildingActivity::class.java)
+                startActivity(intent)
             }
             R.id.nav_add_room -> {
-
+                var intent = Intent(this, AddRoomActivity::class.java)
+                startActivity(intent)
             }
             R.id.nav_my_room -> {
-
+                var intent = Intent(this, MyRoomListActivity::class.java)
+                startActivity(intent)
             }
             R.id.nav_share -> {
-
+                var intent = Intent(this, ShareActivity::class.java)
+                startActivity(intent)
             }
             R.id.nav_send -> {
-
+                var intent = Intent(this, FeedbackActivity::class.java)
+                startActivity(intent)
             }
         }
 

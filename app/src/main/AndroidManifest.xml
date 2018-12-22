@@ -14,11 +14,13 @@
             android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
         </activity>
-        <activity android:name=".LoginActivity"
-                  android:theme="@style/AppTheme.NoActionBar">
+        <activity
+                android:name=".LoginActivity"
+                android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".SignupActivity"
-                  android:theme="@style/AppTheme.NoActionBar">
+        <activity
+                android:name=".SignupActivity"
+                android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:name=".HomeActivity">
         </activity>
@@ -39,13 +41,43 @@
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value=".WelcomeActivity"/>
         </activity>
-        <activity android:name=".SplashScreenActivity"
-                  android:theme="@style/AppTheme.NoActionBar">
+        <activity
+                android:name=".SplashScreenActivity"
+                android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".AddNewBuildingActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".WelcomeActivity"/>
+        </activity>
+        <activity android:name=".AddRoomActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".WelcomeActivity"/>
+        </activity>
+        <activity android:name=".BookedRoomActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".WelcomeActivity"/>
+        </activity>
+        <activity android:name=".FeedbackActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".WelcomeActivity"/>
+        </activity>
+        <activity android:name=".ShareActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".WelcomeActivity"/>
+        </activity>
+        <activity android:name=".model.MyRoomListActivity">
+        </activity>
+        <activity android:name=".MyRoomListActivity">
         </activity>
     </application>
 
