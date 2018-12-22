@@ -75,9 +75,10 @@
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value=".WelcomeActivity"/>
         </activity>
-        <activity android:name=".model.MyRoomListActivity">
-        </activity>
         <activity android:name=".MyRoomListActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".WelcomeActivity"/>
         </activity>
     </application>
 
