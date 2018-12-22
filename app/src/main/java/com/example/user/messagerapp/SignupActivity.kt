@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_new_message.*
+import kotlinx.android.synthetic.main.activity_room_homepage.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import java.io.Serializable
 import java.util.*
@@ -57,6 +57,7 @@ class SignupActivity : AppCompatActivity() {
         var txtBackLogin = findViewById<TextView>(R.id.txt_login)
         var txtUserName = findViewById<EditText>(R.id.txt_r_username)
         var txtEmail = findViewById<EditText>(R.id.txt_r_email)
+        var txtPhone = findViewById<EditText>(R.id.txt_r_phone)
         var txtPassword = findViewById<EditText>(R.id.txt_r_password)
         var btnRegister = findViewById<Button>(R.id.btn_register)
         var imageSelector = findViewById<ImageView>(R.id.r_profile_image)
@@ -71,7 +72,8 @@ class SignupActivity : AppCompatActivity() {
             var email = txtEmail.text.toString().trim()
             var password = txtPassword.text.toString().trim()
             progressBar.visibility = View.VISIBLE
-           if(!email.isEmpty() && !password.isEmpty() && !txtUserName.text.toString().isEmpty()){
+
+           if(!email.isEmpty() && !password.isEmpty() && !txtPhone.text.toString().isEmpty() && !txtUserName.text.toString().isEmpty() && !accountsType.equals(user_type[0])){
                mAuth!!.createUserWithEmailAndPassword(email,password)
                    .addOnCompleteListener(this) { task :Task<AuthResult> ->
                        if (task.isSuccessful){
@@ -87,6 +89,9 @@ class SignupActivity : AppCompatActivity() {
                Toast.makeText(this, "Please Enter invalid data.", Toast.LENGTH_SHORT).show()
                progressBar.visibility = View.INVISIBLE
            }
+            if (accountsType.equals(user_type[0])){
+                Toast.makeText(this, "Please Select User Type", Toast.LENGTH_SHORT).show()
+            }
         }
 
         txtBackLogin.setOnClickListener {
@@ -126,20 +131,19 @@ class SignupActivity : AppCompatActivity() {
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("users/$uid")
 
-        var user = User(uid, txt_r_username.text.toString(), txt_r_email.text.toString() , profileImageUri.toString())
+        var user = User(uid, txt_r_username.text.toString(),txt_r_phone.text.toString(),"Phnom Penh", txt_r_email.text.toString() , profileImageUri.toString(), accountsType.toString().trim())
         ref.setValue(user)
             .addOnSuccessListener {
                 // start home activity
+                FirebaseAuth.getInstance().signOut()
+                var intent = Intent(this, LoginActivity::class.java)
+//              intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 progressBar.visibility = View.INVISIBLE
-                var intent = Intent(this, HomeActivity::class.java)
-                intent.putExtra("user", user)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
                 Toast.makeText(this, "Successfully created user.", Toast.LENGTH_SHORT).show()
                 finish()
             }
             .addOnFailureListener {
-
                 Toast.makeText(this, "Can not create user. Something went wrong" , Toast.LENGTH_SHORT).show()
                 progressBar.visibility = View.INVISIBLE
             }
@@ -161,6 +165,6 @@ class SignupActivity : AppCompatActivity() {
         }
     }
 }
-class User(var uid: String, var username: String, var email: String, var imageUri: String) : Serializable{
-    constructor() :this ("", "", "","")
+class User(var uid: String, var username: String, var phone: String, var address: String, var email: String, var imageUri: String, var position: String) : Serializable{
+    constructor() :this ("", "","","", "","","")
 }

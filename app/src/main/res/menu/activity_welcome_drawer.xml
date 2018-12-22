@@ -5,21 +5,26 @@
 
     <group android:checkableBehavior="single">
         <item
-                android:id="@+id/nav_camera"
-                android:icon="@drawable/ic_menu_camera"
-                android:title="Import"/>
+                android:id="@+id/nav_tenant_dashboard"
+                android:icon="@drawable/ic_dashboard_black_24dp"
+                android:title="Room Rental"/>
+
         <item
-                android:id="@+id/nav_gallery"
-                android:icon="@drawable/ic_menu_gallery"
-                android:title="Gallery"/>
+                android:id="@+id/nav_profile"
+                android:icon="@drawable/ic_person_black_24dp"
+                android:title="Show Profile"/>
         <item
-                android:id="@+id/nav_slideshow"
-                android:icon="@drawable/ic_menu_slideshow"
-                android:title="Slideshow"/>
+                android:id="@+id/nav_room_available"
+                android:icon="@drawable/ic_event_note_black_24dp"
+                android:title="Room Booked"/>
         <item
-                android:id="@+id/nav_manage"
-                android:icon="@drawable/ic_menu_manage"
-                android:title="Tools"/>
+                android:id="@+id/nav_add_room"
+                android:icon="@drawable/ic_add_box_black_24dp"
+                android:title="Add New Room"/>
+        <item
+                android:id="@+id/nav_my_room"
+                android:icon="@drawable/ic_view_list_black_24dp"
+                android:title="My Room"/>
     </group>
 
     <item android:title="Communicate">

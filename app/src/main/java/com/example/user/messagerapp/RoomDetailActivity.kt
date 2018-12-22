@@ -7,8 +7,8 @@ class ChatLogActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_chat_log)
+        setContentView(R.layout.activity_room_detail)
 
-        supportActionBar?.title = "Chat log"
+        supportActionBar?.title = "Room Detail"
     }
 }

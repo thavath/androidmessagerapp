@@ -5,9 +5,16 @@
     <item
             android:id="@+id/menu_new_message"
             android:title="@string/menu_message"
+            android:icon="@drawable/ic_hotel_white_24dp"
+            app:showAsAction="ifRoom"/>
+    <item
+            android:id="@+id/dashboard_owner"
+            android:title="@string/menu_message"
+            android:icon="@drawable/ic_dashboard_black_48dp"
             app:showAsAction="ifRoom"/>
     <item
             android:title="@string/menu_sign_up"
+            android:icon="@drawable/ic_exit_to_app_white_48dp"
             android:id="@+id/menu_sign_up"
             app:showAsAction="ifRoom"/>
 </menu>

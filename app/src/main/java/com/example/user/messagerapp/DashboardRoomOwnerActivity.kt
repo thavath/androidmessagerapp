@@ -12,6 +12,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -22,7 +23,7 @@ import kotlinx.android.synthetic.main.activity_welcome.*
 import kotlinx.android.synthetic.main.app_bar_welcome.*
 
 class WelcomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-
+    var userPosition: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        check if user is login or not
@@ -37,8 +38,8 @@ class WelcomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         var userName = hView.findViewById<TextView>(R.id.user_full_name)
         var userEmail = hView.findViewById<TextView>(R.id.user_email)
 
-        val uid = FirebaseAuth.getInstance().uid
-           if(uid != null){
+          val uid = FirebaseAuth.getInstance().uid
+          if(uid != null){
                val ref = FirebaseDatabase.getInstance().getReference("/users")
                ref.addListenerForSingleValueEvent(object: ValueEventListener {
                    override fun onCancelled(p0: DatabaseError) {
@@ -50,15 +51,24 @@ class WelcomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
                            var user = it.getValue(User::class.java) as User
                            if (user.uid == uid){
                                Picasso.get().load(user.imageUri).into(profileAvatar)
-                               userName.text = user.username
-                               userEmail.text = user.email
+                               userName.text = user.username.capitalize()
+                               userEmail.text = user.email.capitalize()
+                               supportActionBar?.title = user.username.capitalize()+"'s Dashboard"
+                               userPosition = user.position
+                               if (userPosition.equals(("Room Tenant").toString().trim())){
+                                   var intent = Intent(this@WelcomeActivity, HomeActivity::class.java)
+                                   startActivity(intent)
+                                   finish()
+                               }
+                               Toast.makeText(this@WelcomeActivity, "You are $userPosition", Toast.LENGTH_SHORT).show()
                            }
                        }
                    }
                })
-            }else{
+          }else{
                verifyUserIsLogin()
-           }
+          }
+
 //        fab.setOnClickListener { view ->
 //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                .setAction("Action", null).show()
@@ -99,27 +109,36 @@ class WelcomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
-            R.id.action_settings -> return true
-            else -> return super.onOptionsItemSelected(item)
+            R.id.action_settings -> {
+                val intent = Intent(this, HomeActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+                FirebaseAuth.getInstance().signOut()
+                finish()
+            }
         }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
-            R.id.nav_camera -> {
+            R.id.nav_tenant_dashboard -> {
                 // Handle the camera action
                 var intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)
             }
-            R.id.nav_gallery -> {
+            R.id.nav_profile -> {
                 var intent = Intent(this, ShowRoomActivity::class.java)
                 startActivity(intent)
             }
-            R.id.nav_slideshow -> {
+            R.id.nav_room_available -> {
 
             }
-            R.id.nav_manage -> {
+            R.id.nav_add_room -> {
+
+            }
+            R.id.nav_my_room -> {
 
             }
             R.id.nav_share -> {

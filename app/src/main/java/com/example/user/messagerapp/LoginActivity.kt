@@ -22,15 +22,13 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
 
+        setContentView(R.layout.activity_login)
         supportActionBar?.title = "     Login to Room Rental App"
 
 //        spinner set up
-        var user_type = arrayOf("Please Select Account Type" ,"Room Owner", "Room Tenant")
-        var spinner_user: Spinner? = null
-
-        spinner_user  = this.spinner_user_type
+        var user_type = arrayOf("Account Type" ,"Room Owner", "Room Tenant")
+        var spinner_user: Spinner? = this.spinner_user_type
 //        spinner_user!!.setOnItemClickListener { parent, view, position, id ->
 //            Toast.makeText(this,  "Selected : "+ user_type[position], Toast.LENGTH_SHORT).show()
 //        }
@@ -51,6 +49,7 @@ class LoginActivity : AppCompatActivity() {
         // Set Adapter to Spinner
         spinner_user!!.adapter = aa
 
+        var btnSkip = findViewById<Button>(R.id.btn_skip_login)
         var btnLogin = findViewById<Button>(R.id.btn_login)
         var txtEmail = findViewById<EditText>(R.id.txt_email)
         var txtPassword = findViewById<EditText>(R.id.txt_password)
@@ -59,9 +58,12 @@ class LoginActivity : AppCompatActivity() {
         progressBar.visibility = View.INVISIBLE
 
         mAuth = FirebaseAuth.getInstance()
+        btnSkip.setOnClickListener {
+            var intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         btnLogin.setOnClickListener {
-
             var email = txtEmail.text.toString().trim()
             var password = txtPassword.text.toString().trim()
             progressBar.visibility = View.VISIBLE
@@ -69,26 +71,24 @@ class LoginActivity : AppCompatActivity() {
                 mAuth!!.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this){ task: Task<AuthResult> ->
                         if (task.isSuccessful){
-                            progressBar.visibility = View.INVISIBLE
-                            Toast.makeText(this, "Logged in successfully.",Toast.LENGTH_SHORT).show()
                            if(accountType.equals(user_type[1])){
+                               progressBar.visibility = View.INVISIBLE
+                               Toast.makeText(this, "Logged in successfully.",Toast.LENGTH_SHORT).show()
                                var intent = Intent(this, WelcomeActivity::class.java)
-//                        intent.putExtra("email", email)
 //                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                                startActivity(intent)
                                finish()
                            }else if (accountType.equals(user_type[2])){
+                               progressBar.visibility = View.INVISIBLE
+                               Toast.makeText(this, "Logged in successfully.",Toast.LENGTH_SHORT).show()
                                var intent = Intent(this, HomeActivity::class.java)
-//                        intent.putExtra("email", email)
 //                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                                startActivity(intent)
                                finish()
                            }else {
-                               var intent = Intent(this, WelcomeActivity::class.java)
-    //                        intent.putExtra("email", email)
-    //                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-                               startActivity(intent)
-                               finish()
+                               progressBar.visibility = View.INVISIBLE
+                               FirebaseAuth.getInstance().signOut()
+                               Toast.makeText(this@LoginActivity, "Please Select Account Type", Toast.LENGTH_SHORT).show()
                            }
                         }else{
                             Toast.makeText(this, "Invalid Email or Password.",Toast.LENGTH_SHORT).show()
