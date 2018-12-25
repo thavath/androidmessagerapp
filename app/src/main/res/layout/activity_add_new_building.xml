@@ -29,13 +29,27 @@
                     android:padding="10dp"
                     android:textStyle="bold"
                     android:gravity="center"/>
-            <EditText
-                    android:id="@+id/add_building_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/txt_building_id"
-                    android:layout_margin="5dp"
-                    android:padding="10dp"/>
+            <ImageView
+                android:id="@+id/building_profile_image"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/roaded_image"
+                android:contentDescription="TODO"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_menu_camera"/>
+            <TextView
+                android:id="@+id/show_select_building_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select building photo"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                />
+
             <EditText
                     android:id="@+id/add_building_name"
                     android:layout_width="match_parent"
@@ -50,8 +64,35 @@
                     android:hint="@string/txt_building_address"
                     android:layout_margin="5dp"
                     android:padding="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="20dp">
+                <Button
+                    android:id="@+id/btn_cancel_building"
+                    android:layout_weight="1"
+                    android:padding="15dp"
+                    android:textColor="@color/colorWhite"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_raduis_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Clear"/>
+                <Button
+                    android:id="@+id/btn_add_building"
+                    android:background="@drawable/button_raduis_background"
+                    android:padding="15dp"
+                    android:textColor="@color/colorWhite"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Add"/>
+            </LinearLayout>
 
         </LinearLayout>
+
         </android.support.v7.widget.CardView>
     <!--<LinearLayout-->
             <!--android:layout_width="match_parent"-->
