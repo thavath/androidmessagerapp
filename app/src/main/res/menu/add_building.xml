@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/add_building"
+          android:title="@string/action_settings"
+          android:icon="@drawable/ic_home_white_48dp"
+          app:showAsAction="ifRoom"/>
+    <item android:id="@+id/add_new_room"
+          android:title="@string/action_settings"
+          android:icon="@drawable/ic_hotel_white_24dp"
+          app:showAsAction="ifRoom"/>
+</menu>

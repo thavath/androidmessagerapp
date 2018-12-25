@@ -31,4 +31,8 @@
     <string name="room_price">Room Price ($) :</string>
     <string name="room_booking">Check Out</string>
     <string name="description">input hide show layout</string>
+    <string name="txt_building_id">Building Number</string>
+    <string name="txt_building_address">Building Location</string>
+    <string name="txt_building_name">Building Name</string>
+    <string name="app_add_building_text">Add new building information</string>
 </resources>

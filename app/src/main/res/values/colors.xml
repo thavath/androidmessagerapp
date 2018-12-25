@@ -10,5 +10,6 @@
     <color name="colorTwitter">#16add7</color>
     <color name="colorSignin">#e1dede</color>
     <color name="colorLogin">#6f72e4</color>
+    <color name="cardViewColorBackground">#e5e6e7</color>
     <color name="colorSignup">#378bd4</color>
 </resources>
