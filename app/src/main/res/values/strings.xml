@@ -29,10 +29,24 @@
     <string name="btn_update_profile">Update</string>
     <string name="btn_cancel_profile">Cancel</string>
     <string name="room_price">Room Price ($) :</string>
-    <string name="room_booking">Check Out</string>
+    <string name="room_booking">Booking</string>
     <string name="description">input hide show layout</string>
     <string name="txt_building_id">Building Number</string>
     <string name="txt_building_address">Building Location</string>
     <string name="txt_building_name">Building Name</string>
     <string name="app_add_building_text">Add new building information</string>
+    <string name="app_add_room_text">Select One Room Image</string>
+    <string name="app_add_rooms_text">Add room information</string>
+    <string name="txt_room_price">Room Price ($):</string>
+    <string name="txt_room_size">Room Size (m * m)</string>
+    <string name="txt_room_description">Room Description</string>
+    <string name="room_status">Free</string>
+    <string name="room_building">Building Name</string>
+    <string name="menu_dashboard">Room Owner Dashboard</string>
+    <string name="menu_room_list">Available Room</string>
+    <string name="menu_room_booked">Booked Room</string>
+    <string name="txt_stay_date">Stay Date</string>
+    <string name="txt_stay_people">Total People (Limit 4)</string>
+    <string name="txt_stay_total_months">Total months of staying</string>
+    <string name="txt_leave_date">When will you leave?</string>
 </resources>

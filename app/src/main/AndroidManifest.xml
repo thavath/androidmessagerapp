@@ -80,6 +80,16 @@
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value=".WelcomeActivity"/>
         </activity>
+        <activity android:name=".BookingActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".ChatLogActivity"/>
+        </activity>
+        <activity android:name=".ShowBookingActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".NewMessageActivity"/>
+        </activity>
     </application>
 
 </manifest>

@@ -5,17 +5,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/colorSignin"
+        android:padding="5dp"
         tools:context=".HomeActivity">
-    <TextView
-            android:id="@+id/text_view_email"
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/room_rental_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:layout_marginTop="40dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textAlignment="center"/>
-
+            android:layout_height="match_parent"/>
 </LinearLayout>

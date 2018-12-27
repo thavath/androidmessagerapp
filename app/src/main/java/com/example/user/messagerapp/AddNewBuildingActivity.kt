@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import android.widget.*
 import com.example.user.messagerapp.model.Building
 import com.google.firebase.auth.FirebaseAuth
@@ -27,15 +28,17 @@ class AddNewBuildingActivity : AppCompatActivity() {
         supportActionBar?.title = "Add New Building"
 
         var showDate = findViewById<TextView>(R.id.show_select_building_image)
-
 //        showDate.text = currentDate
 
         var btnSelectPhoto = findViewById<ImageView>(R.id.building_profile_image)
         var buildingName = findViewById<EditText>(R.id.add_building_name)
         var buildingLocation = findViewById<EditText>(R.id.add_building_address)
         var btnAdd = findViewById<Button>(R.id.btn_add_building)
+
+        var progress = findViewById<ProgressBar>(R.id.buildingProgress)
         var btnCancel = findViewById<Button>(R.id.btn_cancel_building)
 
+        progress.visibility = View.INVISIBLE
 
 
         btnSelectPhoto.setOnClickListener {
@@ -51,7 +54,7 @@ class AddNewBuildingActivity : AppCompatActivity() {
     }
 
     private fun uploadImageToFirebaseStorage() {
-
+        buildingProgress.visibility = View.VISIBLE
         if (selectedImageUri == null) return
         val filename = UUID.randomUUID().toString()+ "buildingImage"
         val ref = FirebaseStorage.getInstance().getReference("/building/$filename")
@@ -64,6 +67,7 @@ class AddNewBuildingActivity : AppCompatActivity() {
                             }
                 }
                 .addOnFailureListener {
+                    buildingProgress.visibility = View.INVISIBLE
                     Toast.makeText(this, "Error accured", Toast.LENGTH_SHORT).show()
                 }
     }
@@ -80,6 +84,7 @@ class AddNewBuildingActivity : AppCompatActivity() {
         ref.setValue(building)
                 .addOnSuccessListener {
                     // start room list activity
+                    buildingProgress.visibility = View.INVISIBLE
                     var intent = Intent(this, MyRoomListActivity::class.java)
 //              intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
 //                    progressBar.visibility = View.INVISIBLE
@@ -101,7 +106,7 @@ class AddNewBuildingActivity : AppCompatActivity() {
         if (requestCode == 1 && resultCode == Activity.RESULT_OK && data != null){
             // get data from pick photo
             selectedImageUri = data.data
-            var bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedImageUri)
+//            var bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedImageUri)
 //            val bimapBitmapDrawable = BitmapDrawable(bitmap)
             building_profile_image.setImageURI(selectedImageUri)
             Toast.makeText(this, "Image selected", Toast.LENGTH_SHORT).show()

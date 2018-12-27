@@ -118,7 +118,7 @@
 
            <Spinner
                android:id="@+id/spinner_user_type_register"
-               android:layout_width="match_parent"
+               android:layout_width="fill_parent"
                android:layout_height="wrap_content"
                android:layout_margin="3dp"
                android:layout_gravity="center"

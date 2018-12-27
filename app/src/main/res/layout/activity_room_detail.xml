@@ -5,6 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorSignin"
         tools:context=".ChatLogActivity"
         android:orientation="vertical">
     <ImageView
@@ -23,11 +24,48 @@
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="26sp"
+                android:textSize="14sp"
+                android:padding="10dp"
                 android:text="@string/room_price"
                 android:textColor="@color/colorBlack"
                 android:id="@+id/txt_show_room_price"
                 />
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:padding="10dp"
+                android:text="@string/txt_room_size"
+                android:textColor="@color/colorBlack"
+                android:id="@+id/txt_show_room_size"
+        />
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:padding="10dp"
+                android:text="@string/txt_room_description"
+                android:textColor="@color/colorBlack"
+                android:id="@+id/txt_show_room_description"
+        />
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:padding="10dp"
+                android:text="@string/room_building"
+                android:textColor="@color/colorBlack"
+                android:id="@+id/txt_show_room_building_name"
+        />
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:padding="10dp"
+                android:text="@string/room_status"
+                android:textColor="@color/colorBlack"
+                android:id="@+id/txt_show_room_status"
+        />
     </LinearLayout>
     <Button
             android:id="@+id/btn_booking_room"

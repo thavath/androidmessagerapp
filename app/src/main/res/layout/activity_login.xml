@@ -73,7 +73,7 @@
         <Spinner
                 android:layout_marginTop="20dp"
                 android:id="@+id/spinner_user_type"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:gravity="center"
                 android:textAlignment="center"
                 android:layout_gravity="center"

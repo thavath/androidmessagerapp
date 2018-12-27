@@ -8,8 +8,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
+import com.example.user.messagerapp.adapter.RoomAdapter
 //import android.widget.Toast
 import com.example.user.messagerapp.adapter.UserAdapter
+import com.example.user.messagerapp.model.Room
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -19,9 +21,9 @@ import kotlinx.android.synthetic.main.activity_room_avaiable.*
 
 class NewMessageActivity : AppCompatActivity() {
 
-    private var userList: ArrayList<User>? = null
+    private var roomList: ArrayList<Room>? = null
     private var layoutManager: RecyclerView.LayoutManager? = null
-    private var adapter: UserAdapter? = null
+    private var adapter: RoomAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,9 +32,9 @@ class NewMessageActivity : AppCompatActivity() {
         var progressBar = findViewById<ProgressBar>(R.id.progressBar)
         supportActionBar?.title = "Available Room"
         progressBar.visibility = View.VISIBLE
-        userList = ArrayList<User>()
+        roomList = ArrayList()
 
-        val ref = FirebaseDatabase.getInstance().getReference("/users")
+        val ref = FirebaseDatabase.getInstance().getReference("/rooms")
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -40,13 +42,15 @@ class NewMessageActivity : AppCompatActivity() {
 
             override fun onDataChange(p0: DataSnapshot) {
                 p0.children.forEach {
-                    var user = it.getValue(User::class.java) as User
-                    if (user != null){
-                        userList!!.add(user)
+                    var room = it.getValue(Room::class.java) as Room
+                    if (room != null){
+                        if (!room.roomStatus){
+                            roomList!!.add(room)
+                        }
                     }
                 }
                 layoutManager = LinearLayoutManager(this@NewMessageActivity)
-                adapter = UserAdapter(userList!!, this@NewMessageActivity)
+                adapter = RoomAdapter(roomList!!, this@NewMessageActivity)
                 preview_new_message.layoutManager = layoutManager
                 preview_new_message.adapter = adapter
                 progressBar.visibility = View.INVISIBLE

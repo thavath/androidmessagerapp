@@ -133,11 +133,11 @@ class SignupActivity : AppCompatActivity() {
         ref.setValue(user)
             .addOnSuccessListener {
                 // start home activity
-                FirebaseAuth.getInstance().signOut()
                 var intent = Intent(this, LoginActivity::class.java)
 //              intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 progressBar.visibility = View.INVISIBLE
                 startActivity(intent)
+                FirebaseAuth.getInstance().signOut()
                 Toast.makeText(this, "Successfully created user.", Toast.LENGTH_SHORT).show()
                 finish()
             }

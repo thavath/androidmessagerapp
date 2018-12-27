@@ -3,15 +3,14 @@ package com.example.user.messagerapp
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.ImageView
 import android.widget.ProgressBar
-import com.example.user.messagerapp.adapter.UserAdapter
+import com.example.user.messagerapp.adapter.RoomAdapter
+import com.example.user.messagerapp.model.Room
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -21,9 +20,9 @@ import kotlinx.android.synthetic.main.activity_room_avaiable.*
 
 class MainActivity : AppCompatActivity() {
 
-    private var userList: ArrayList<User>? = null
+    private var roomList: ArrayList<Room>? = null
     private var layoutManager: RecyclerView.LayoutManager? = null
-    private var adapter: UserAdapter? = null
+    private var adapter: RoomAdapter? = null
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item?.itemId){
             R.id.action_settings -> {
@@ -50,9 +49,9 @@ class MainActivity : AppCompatActivity() {
         var progressBar = findViewById<ProgressBar>(R.id.progressBar)
         supportActionBar?.title = "Available Room"
         progressBar.visibility = View.VISIBLE
-        userList = ArrayList<User>()
+        roomList = ArrayList()
 
-        val ref = FirebaseDatabase.getInstance().getReference("/users")
+        val ref = FirebaseDatabase.getInstance().getReference("/rooms")
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -60,13 +59,15 @@ class MainActivity : AppCompatActivity() {
 
             override fun onDataChange(p0: DataSnapshot) {
                 p0.children.forEach {
-                    var user = it.getValue(User::class.java) as User
-                    if (user != null){
-                        userList!!.add(user)
+                    var room = it.getValue(Room::class.java) as Room
+                    if (room != null){
+                        if (!room.roomStatus){
+                            roomList!!.add(room)
+                        }
                     }
                 }
                 layoutManager = LinearLayoutManager(this@MainActivity)
-                adapter = UserAdapter(userList!!, this@MainActivity)
+                adapter = RoomAdapter(roomList!!, this@MainActivity)
                 preview_new_message.layoutManager = layoutManager
                 preview_new_message.adapter = adapter
                 progressBar.visibility = View.INVISIBLE
